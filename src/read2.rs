@@ -18,8 +18,8 @@ mod imp {
     use std::io::{self, Read};
     use std::process::{ChildStdout, ChildStderr};
 
-    pub fn read2(out_pipe: ChildStdout,
-                 err_pipe: ChildStderr,
+    pub fn read2(mut out_pipe: ChildStdout,
+                 mut err_pipe: ChildStderr,
                  data: &mut FnMut(bool, &mut Vec<u8>, bool)) -> io::Result<()> {
         let mut buffer = Vec::new();
         out_pipe.read_to_end(&mut buffer)?;
